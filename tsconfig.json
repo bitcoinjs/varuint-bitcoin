@@ -2,10 +2,10 @@
   "compilerOptions": {
     "target": "ES2015",
     "module": "commonjs",
-    "outDir": "./",
+    "outDir": "./dist",
     "declaration": true,
-    "declarationDir": "./",
-    "rootDir": "./",
+    "declarationDir": "./types",
+    "rootDir": "./src",
     "types": [
       "node"
     ],
@@ -24,11 +24,7 @@
     "esModuleInterop": true,
     "resolveJsonModule": true
   },
-  "include": [
-      "./**/*.ts"
-  ],
-  "exclude": [
-      "**/*.spec.ts",
-      "node_modules/**/*"
+  "files": [
+    "./src/index.ts"
   ]
 }
