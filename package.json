@@ -25,11 +25,12 @@
     "unit": "tape test/*.js"
   },
   "dependencies": {
-    "safe-buffer": "^5.1.1"
+    "@types/node": "^12.7.2"
   },
   "devDependencies": {
     "nyc": "^11.4.1",
     "standard": "*",
-    "tape": "^4.5.1"
+    "tape": "^4.5.1",
+    "typescript": "^3.5.3"
   }
 }
