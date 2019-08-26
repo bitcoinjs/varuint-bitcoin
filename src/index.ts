@@ -19,7 +19,6 @@ const encode = ((num: number, buffer?: Buffer, offset?: number): Buffer => {
   checkUInt53(num);
 
   if (!buffer) buffer = Buffer.allocUnsafe(encodingLength(num));
-  if (!Buffer.isBuffer(buffer)) throw new TypeError('buffer must be a Buffer instance');
   if (!offset) offset = 0;
 
   // 8 bit
@@ -56,7 +55,6 @@ interface Decode {
 }
 
 const decode = ((buffer: Buffer, offset?: number): number => {
-  if (!Buffer.isBuffer(buffer)) throw new TypeError('buffer must be a Buffer instance');
   if (!offset) offset = 0;
 
   const first = buffer.readUInt8(offset);
