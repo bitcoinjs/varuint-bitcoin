@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@types/tape": "^4.2.33",
-    "nyc": "^11.4.1",
+    "nyc": "^14.1.1",
     "tape": "^4.5.1",
     "tslint": "^5.19.0",
     "typescript": "^3.5.3"
