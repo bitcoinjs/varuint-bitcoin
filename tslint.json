@@ -34,7 +34,8 @@
       "check-format",
       "allow-leading-underscore",
       "allow-pascal-case"
-    ]
+    ],
+    "no-implicit-dependencies": [true, "dev"]
   },
   "rulesDirectory": []
 }

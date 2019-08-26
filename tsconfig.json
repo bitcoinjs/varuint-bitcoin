@@ -20,10 +20,12 @@
     "alwaysStrict": true,
     "esModuleInterop": false,
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true
   },
   "include": [
-      "./*.ts"
+      "./**/*.ts"
   ],
   "exclude": [
       "**/*.spec.ts",
