@@ -20,7 +20,7 @@
   },
   "scripts": {
     "coverage": "nyc --check-coverage --branches 100 --functions 100 tape test/*.js",
-    "lint": "standard",
+    "lint": "tslint -p tsconfig.json -c tslint.json",
     "test": "npm run lint && npm run unit",
     "unit": "tape test/*.js"
   },
@@ -29,8 +29,8 @@
   },
   "devDependencies": {
     "nyc": "^11.4.1",
-    "standard": "*",
     "tape": "^4.5.1",
+    "tslint": "^5.19.0",
     "typescript": "^3.5.3"
   }
 }
