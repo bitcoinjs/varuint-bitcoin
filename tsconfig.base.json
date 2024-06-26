@@ -3,7 +3,7 @@
       "target": "ES5",
       "module": "commonjs",
       "outDir": "./src",
-      "rootDir": ".",
+      "rootDir": "./ts_src",
       "types": ["node"],
       "allowJs": false,
       "strict": true,

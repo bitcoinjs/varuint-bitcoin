@@ -1,11 +1,15 @@
 'use strict';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.encode = encode;
+exports.decode = decode;
+exports.encodingLength = encodingLength;
 // Number.MAX_SAFE_INTEGER
 var MAX_SAFE_INTEGER = 9007199254740991;
 function checkUInt53(n) {
     if (n < 0 || n > MAX_SAFE_INTEGER || n % 1 !== 0)
         throw new RangeError('value out of range');
 }
-export function encode(n, buffer, offset) {
+function encode(n, buffer, offset) {
     checkUInt53(n);
     if (offset === undefined)
         offset = 0;
@@ -50,7 +54,7 @@ export function encode(n, buffer, offset) {
     }
     return { buffer: buffer, bytes: bytes };
 }
-export function decode(buffer, offset) {
+function decode(buffer, offset) {
     if (offset === undefined)
         offset = 0;
     var first = buffer.at(offset);
@@ -79,7 +83,7 @@ export function decode(buffer, offset) {
         return { value: +number.toString(), bytes: 9 };
     }
 }
-export function encodingLength(n) {
+function encodingLength(n) {
     checkUInt53(n);
     return (n < 0xfd
         ? 1

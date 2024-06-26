@@ -1,9 +1,9 @@
-export declare function encode(n: number, buffer: Buffer, offset: number): {
-    buffer: Buffer;
+export declare function encode(n: number, buffer?: Uint8Array, offset?: number): {
+    buffer: Uint8Array;
     bytes: number;
 };
-export declare function decode(buffer: Buffer, offset: number): {
+export declare function decode(buffer: Uint8Array, offset?: number): {
     value: number;
     bytes: number;
 };
-export declare function encodingLength(n: number): 1 | 3 | 5 | 9;
+export declare function encodingLength(n: number): number;

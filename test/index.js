@@ -1,6 +1,5 @@
 'use strict'
 import tape from 'tape'
-// import { encode, decode, encodingLength } from '../'
 import { encode, decode, encodingLength } from '../src/esm/index.js'
 
 import fixtures from './fixtures.json' assert { type: "json" }
@@ -9,7 +8,7 @@ const { valid, invalid } = fixtures
 valid.forEach(function (fixture, i) {
   tape('valid encode #' + (i + 1), function (t) {
     const res = encode(fixture.dec)
-    t.same(res.buffer.toString('hex'), fixture.hex)
+    t.same(Buffer.from(res.buffer).toString('hex'), fixture.hex)
     t.same(res.bytes, fixture.hex.length / 2)
     t.end()
   })
@@ -61,13 +60,6 @@ tape('encode', function (t) {
     t.end()
   })
 
-  t.test('should be a buffer', function (t) {
-    t.throws(function () {
-      encode(0, [])
-    }, new TypeError('buffer must be a Buffer instance'))
-    t.end()
-  })
-
   t.end()
 })
 
@@ -80,10 +72,10 @@ tape('decode', function (t) {
     t.end()
   })
 
-  t.test('should be a buffer', function (t) {
+  t.test('should be a valid offset', function (t) {
     t.throws(function () {
-      decode([])
-    }, new TypeError('buffer must be a Buffer instance'))
+      decode([], 1)
+    }, new Error('buffer too small'))
     t.end()
   })
 
