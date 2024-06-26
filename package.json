@@ -1,6 +1,7 @@
 {
   "name": "varuint-bitcoin",
   "version": "1.1.2",
+  "type": "module",
   "description": "encode/decode number as bitcoin variable length integer",
   "homepage": "https://github.com/bitcoinjs/varuint-bitcoin",
   "bugs": {
@@ -12,24 +13,35 @@
     "index.js",
     "index.d.ts"
   ],
-  "main": "./index.js",
-  "types": "./index.d.ts",
+  "main": "src/cjs/index.js",
+  "module": "src/esm/index.js",
+  "types": "src/cjs/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/cjs/index.d.ts",
+      "import": "./src/esm/index.js",
+      "require": "./src/cjs/index.js"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/bitcoinjs/varuint-bitcoin.git"
   },
   "scripts": {
-    "coverage": "nyc --check-coverage --branches 100 --functions 100 tape test/*.js",
-    "lint": "standard",
+    "build": "npm run clean && tsc -p ./tsconfig.json && tsc -p ./tsconfig.cjs.json; npm run standard -- --fix",
+    "standard": "standard --ignore test",
+    "clean": "rimraf src",
+    "coverage": "c8 --check-coverage --branches 100 --functions 100 tape test/*.js",
+    "lint": "npm run standard",
     "test": "npm run lint && npm run unit",
     "unit": "tape test/*.js"
   },
-  "dependencies": {
-    "safe-buffer": "^5.1.1"
-  },
   "devDependencies": {
-    "nyc": "^14.1.1",
+    "@types/node": "^20.14.8",
+    "c8": "^10.1.2",
+    "rimraf": "^5.0.7",
     "standard": "*",
-    "tape": "^4.5.1"
+    "tape": "^5.3.0",
+    "typescript": "^5.5.2"
   }
 }
