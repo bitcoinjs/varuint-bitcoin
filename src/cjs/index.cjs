@@ -28,7 +28,6 @@ function encode(n, buffer, offset) {
         dataview.setUint16(0, n, true);
         buffer.set([0xfd], offset);
         buffer.set(new Uint8Array(dataview.buffer), offset + 1);
-        // buffer.writeUInt16LE(n, offset + 1)
         bytes = 3;
         // 32 bit
     }
@@ -37,8 +36,6 @@ function encode(n, buffer, offset) {
         dataview.setUint32(0, n, true);
         buffer.set([0xfe], offset);
         buffer.set(new Uint8Array(dataview.buffer), offset + 1);
-        // buffer.writeUInt8(0xfe, offset)
-        // buffer.writeUInt32LE(n, offset + 1)
         bytes = 5;
         // 64 bit
     }
@@ -47,9 +44,6 @@ function encode(n, buffer, offset) {
         dataview.setBigUint64(0, BigInt(n), true);
         buffer.set([0xff], offset);
         buffer.set(new Uint8Array(dataview.buffer), offset + 1);
-        // buffer.writeUInt8(0xff, offset)
-        // buffer.writeUInt32LE(n >>> 0, offset + 1)
-        // buffer.writeUInt32LE((n / 0x100000000) | 0, offset + 5)
         bytes = 9;
     }
     return { buffer: buffer, bytes: bytes };
@@ -75,9 +69,6 @@ function decode(buffer, offset) {
         // 64 bit
     }
     else {
-        // const lo = buffer.readUInt32LE(offset + 1)
-        // const hi = buffer.readUInt32LE(offset + 5)
-        // const number = hi * 0x0100000000 + lo
         var number = dataview.getBigUint64(offset + 1, true);
         checkUInt53(+number.toString());
         return { value: +number.toString(), bytes: 9 };

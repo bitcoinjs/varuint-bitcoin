@@ -29,7 +29,6 @@ export function encode (n: number, buffer?: Uint8Array, offset?: number): { buff
     buffer.set([0xfd], offset)
     buffer.set(new Uint8Array(dataview.buffer), offset + 1)
 
-    // buffer.writeUInt16LE(n, offset + 1)
     bytes = 3
 
   // 32 bit
@@ -39,8 +38,6 @@ export function encode (n: number, buffer?: Uint8Array, offset?: number): { buff
     buffer.set([0xfe], offset)
     buffer.set(new Uint8Array(dataview.buffer), offset + 1)
 
-    // buffer.writeUInt8(0xfe, offset)
-    // buffer.writeUInt32LE(n, offset + 1)
     bytes = 5
 
   // 64 bit
