@@ -1,6 +1,6 @@
 {
     "name": "varuint-bitcoin",
-    "version": "1.1.2",
+    "version": "2.0.0",
     "type": "module",
     "description": "encode/decode number as bitcoin variable length integer",
     "homepage": "https://github.com/bitcoinjs/varuint-bitcoin",
