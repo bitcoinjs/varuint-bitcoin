@@ -61,6 +61,8 @@ export function decode(buffer, offset) {
     }
     else if (first === 0xfd) {
         const val = tools.readUInt16(buffer, offset + 1, 'LE');
+        if (val < 0xfd)
+            throw new Error('non-minimal encoding');
         return {
             numberValue: val,
             bigintValue: BigInt(val),
@@ -70,6 +72,8 @@ export function decode(buffer, offset) {
     }
     else if (first === 0xfe) {
         const val = tools.readUInt32(buffer, offset + 1, 'LE');
+        if (val <= 0xffff)
+            throw new Error('non-minimal encoding');
         return {
             numberValue: val,
             bigintValue: BigInt(val),
@@ -79,6 +83,8 @@ export function decode(buffer, offset) {
     }
     else {
         const number = tools.readUInt64(buffer, offset + 1, 'LE');
+        if (number <= 0xffffffffn)
+            throw new Error('non-minimal encoding');
         return { numberValue: number <= Number.MAX_SAFE_INTEGER ? Number(number) : null, bigintValue: number, bytes: 9 };
     }
 }

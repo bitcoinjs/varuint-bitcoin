@@ -102,6 +102,19 @@ tape("decode", function (t) {
         t.end();
     });
 
+    t.test("should reject a non-minimal encoding", function (t) {
+        t.throws(function () {
+            decode(Buffer.from("fd0100", "hex"));
+        }, new Error("non-minimal encoding"));
+        t.throws(function () {
+            decode(Buffer.from("fe01000000", "hex"));
+        }, new Error("non-minimal encoding"));
+        t.throws(function () {
+            decode(Buffer.from("ff0100000000000000", "hex"));
+        }, new Error("non-minimal encoding"));
+        t.end();
+    });
+
     t.test("should return null if a number is invalid", function (t) {
         var buffer = Buffer.alloc(18);
         buffer.writeUIntBE(0xff, 0, 1);
