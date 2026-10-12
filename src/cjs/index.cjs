@@ -78,6 +78,8 @@ function encode(n, buffer, offset) {
 function decode(buffer, offset) {
     if (offset === undefined)
         offset = 0;
+    if (!Number.isSafeInteger(offset) || offset < 0)
+        throw new RangeError('offset out of range');
     const first = buffer.at(offset);
     if (first === undefined)
         throw new Error('buffer too small');

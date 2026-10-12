@@ -66,6 +66,7 @@ export function decode (
   offset?: number
 ): { numberValue: number | null, bigintValue: bigint, bytes: number } {
   if (offset === undefined) offset = 0
+  if (!Number.isSafeInteger(offset) || offset < 0) throw new RangeError('offset out of range')
 
   const first = buffer.at(offset)
   if (first === undefined) throw new Error('buffer too small')
